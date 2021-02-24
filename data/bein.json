@@ -1,0 +1,16 @@
+﻿{
+    "result": [
+        {
+            "additionalInfo": "beIN",
+            "videoUrl": "https://ttomas100.github.io/data/test.mp4",
+            "titleText": "Soccer Highlights",
+            "art__images__width": "604",
+            "art__images__url": "https://images.beinsports.com/Ur-0puMbDiBIgABCaNiyuAaO738=/full-fit-in/1000x0/3659417-Screen-Shot-2021-02-24-at-9.05.35-AM.jpg",
+            "art__images__height": "509",
+            "updateDate": "2021-02-16T00:45:02.350Z",
+            "mainText": "Soccer Highlights",
+            "uid": "univision",
+            "streamUrl": "https://ttomas100.github.io/data/test.mp4"
+        }
+    ]
+}
