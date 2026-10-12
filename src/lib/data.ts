@@ -344,9 +344,10 @@ export const PROJECTS: Project[] = [
 /* ------------------------------------------------------------------ */
 
 export const CERTIFICATIONS = [
-  { title: "Artificial Intelligence Program", issuer: "Cornell University", year: "2025", detail: "Neural networks, deep learning, generative AI, eval design, and AI governance." },
-  { title: "Cloud Computing", issuer: "The University of Texas at Austin", year: "2023" },
-  { title: "Full Stack Web Development", issuer: "University of Miami", year: "2020 — 2021" },
+  // `color`: the school's official brand colour, used for the hover flood.
+  { title: "Artificial Intelligence Program", issuer: "Cornell University", year: "2025", detail: "Neural networks, deep learning, generative AI, eval design, and AI governance.", color: "#B31B1B" }, // Cornell carnelian
+  { title: "Cloud Computing", issuer: "The University of Texas at Austin", year: "2023", color: "#BF5700" }, // UT burnt orange
+  { title: "Full Stack Web Development", issuer: "University of Miami", year: "2020 — 2021", color: "#005030" }, // Miami green (white text is unreadable on Miami orange)
 ];
 
 /* ------------------------------------------------------------------ */

@@ -9,7 +9,7 @@ const css = `
 .ce-count{margin-top:22px;font-family:var(--font-mono);font-size:12.5px;color:var(--mute);letter-spacing:.03em}
 .ce-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
 .ce-row{position:relative;display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:16px;align-items:center;padding:28px 18px;border-bottom:1px solid var(--line);isolation:isolate;outline:none;cursor:default;transition:color .5s var(--ease),opacity .9s var(--ease) calc(var(--i,0) * 80ms),transform 1.1s var(--ease) calc(var(--i,0) * 80ms)}
-.ce-row::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ink);transform:scaleX(0);transform-origin:0 50%;transition:transform .7s var(--ease)}
+.ce-row::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--flood,var(--ink));transform:scaleX(0);transform-origin:0 50%;transition:transform .7s var(--ease)}
 .ce-row:hover::before,.ce-row:focus-visible::before{transform:scaleX(1)}
 .ce-row:hover,.ce-row:focus-visible{color:#fff}
 .ce-row:focus-visible{box-shadow:0 0 0 2px var(--ink),0 0 0 4px #fff}
@@ -43,7 +43,7 @@ export default function Certifications() {
         </div>
         <ol className="ce-list">
           {CERTIFICATIONS.map((c, i) => (
-            <li key={c.title} className="ce-row rv" tabIndex={0} style={{ ["--i" as string]: i }}>
+            <li key={c.title} className="ce-row rv" tabIndex={0} style={{ ["--i" as string]: i, ["--flood" as string]: c.color }}>
               <span className="ce-n">{String(i + 1).padStart(2, "0")}</span>
               <div>
                 <h3 className="ce-title">{c.title}</h3>
