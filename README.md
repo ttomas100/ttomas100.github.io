@@ -87,6 +87,11 @@ After rebuilding, bump `HERO_VERSION` in `src/components/hero/Hero.tsx`. `/hero/
 - Trademark notice: `public/logos/DISCLAIMER-simple-icons.md`. All logos are trademarks of their owners and are used only to name the technologies.
 - OpenAI, Xbox and Amazon have no openly licensed logo in either set, so they appear as neutral monograms.
 - Concepts such as RAG, MCP or Eval design use custom line icons in `ui/TechLogo.tsx`.
+- Work-panel watermarks live in `public/brands/` and are drawn as single-colour masks at ~5% opacity:
+  - Apple and Max: simple-icons (CC0).
+  - Aila: `mark-raisin.svg` from the Aila iOS app.
+  - Woulib: the W and dot cut from `logo_w_dot.png` in the Woulib iOS app.
+  - beIN Sports: no openly licensed logo was available, so the panel uses a text wordmark. Drop an official SVG into `public/brands/` and set `mark.src` in `data.ts` to use it.
 
 ## Credits
 

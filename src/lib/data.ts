@@ -196,13 +196,15 @@ export type Project = {
   tech: { name: string; logo: string }[];
   github?: string;
   ui: MiniUI;
+  /** Faint watermark shown when the panel opens: a single-colour logo file in /public/brands, or a text wordmark. */
+  mark: { label: string; src?: string; text?: string };
 };
 
 export const PROJECTS: Project[] = [
   {
     id: "apple",
     index: "01",
-    title: "Apple launch trains",
+    title: "Apple Apps",
     kicker: "Apple Inc. · 2024 — Present",
     description:
       "End-to-end launch program management for Apple apps — coordinating submission trains across engineering, product, infrastructure, and partner teams that ship to hundreds of millions of devices.",
@@ -220,6 +222,7 @@ export const PROJECTS: Project[] = [
       { name: "Eval design", logo: "eval" },
     ],
     ui: "train",
+    mark: { label: "Apple", src: "/brands/apple.svg" },
   },
   {
     id: "max",
@@ -244,6 +247,7 @@ export const PROJECTS: Project[] = [
       { name: "Amazon Appstore", logo: "amazon" }, // owner
     ],
     ui: "matrix",
+    mark: { label: "Max", src: "/brands/hbomax.svg" },
   },
   {
     id: "bein",
@@ -266,6 +270,8 @@ export const PROJECTS: Project[] = [
       { name: "Roku", logo: "roku" },
     ],
     ui: "traffic",
+    // No openly licensed beIN Sports logo available: plain text wordmark instead.
+    mark: { label: "beIN Sports", text: "beIN SPORTS" },
   },
   {
     id: "aila",
@@ -292,6 +298,7 @@ export const PROJECTS: Project[] = [
       { name: "OpenAI API", logo: "openai" },
     ],
     ui: "marketplace",
+    mark: { label: "Aila", src: "/brands/aila.svg" },
   },
   // repos — from the Woulib-API / Woulib-Mobile-iOS / Woulib-Mobile-Android READMEs
   {
@@ -321,6 +328,7 @@ export const PROJECTS: Project[] = [
       { name: "Firebase", logo: "firebase" },
     ],
     ui: "ride",
+    mark: { label: "Woulib", src: "/brands/woulib.png" },
   },
 ];
 

@@ -34,6 +34,9 @@ const css = `
 .wk-feats li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:1.5px;background:var(--ink)}
 .wk-tech{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:20px}
 .wk-tech .chip img,.wk-tech .chip svg,.wk-tech .chip [role=img]{flex:none}
+.wk-mark{position:absolute;left:-3%;bottom:-6%;width:min(44%,420px);aspect-ratio:1;pointer-events:none;background:var(--ink);-webkit-mask:var(--mark) center/contain no-repeat;mask:var(--mark) center/contain no-repeat;opacity:0;transform:translateY(40px) scale(.9) rotate(-6deg);transition:opacity .4s var(--ease),transform .6s var(--ease)}
+.wk-mark.is-text{background:none;-webkit-mask:none;mask:none;width:auto;aspect-ratio:auto;bottom:-2%;left:2%;font-weight:800;letter-spacing:-.05em;line-height:.82;font-size:clamp(72px,8.4vw,136px);color:var(--ink);white-space:nowrap}
+.wk-panel.is-open .wk-mark{opacity:.055;transform:none;transition:opacity 1.2s .3s var(--ease),transform 1.5s .3s var(--ease)}
 .wk-ui{min-width:0;clip-path:inset(0 100% 0 0 round 22px);transition:clip-path .6s var(--ease)}
 .wk-panel.is-open .wk-ui{clip-path:inset(0 0 0 0 round 22px);transition:clip-path 1.2s .35s var(--ease)}
 @media (max-width: 900px){
@@ -46,6 +49,8 @@ const css = `
   .wk-body{position:relative;display:none;grid-template-columns:minmax(0,1fr);min-width:0;padding:0 20px 22px}
   .wk-panel.is-open .wk-body{display:grid}
   .wk-ui{height:320px}
+  .wk-mark{width:70%;left:auto;right:-10%;bottom:-4%}
+  .wk-mark.is-text{right:auto;left:4%;font-size:64px}
   .wk-feats{grid-template-columns:1fr}
 }
 `;
@@ -89,6 +94,13 @@ export default function Work() {
                     +
                   </span>
                 </button>
+                <span
+                  className={`wk-mark${p.mark.text ? " is-text" : ""}`}
+                  aria-hidden="true"
+                  style={p.mark.src ? { ["--mark" as string]: `url(${p.mark.src})` } : undefined}
+                >
+                  {p.mark.text}
+                </span>
                 <div className="wk-body" id={`wk-b-${p.id}`} inert={!isOpen}>
                   <div className="wk-text">
                     <p className="wk-kick">

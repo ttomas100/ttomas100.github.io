@@ -267,7 +267,7 @@ const DESCRIBE: Record<Kind, string> = {
 };
 
 const TITLE: Record<Kind, string> = {
-  train: "Launch train",
+  train: "App releases",
   matrix: "Device × region",
   traffic: "Ops health",
   marketplace: "Discovery",

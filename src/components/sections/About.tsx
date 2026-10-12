@@ -248,7 +248,7 @@ export default function About() {
                       <span>02</span>HBO Max, Max &amp; Discovery+ to 100M+ users
                     </li>
                     <li>
-                      <span>03</span>Apple News &amp; Stocks launch trains
+                      <span>03</span>Apple apps: News, Stocks, Weather, Notes &amp; video
                     </li>
                     <li>
                       <span>04</span>Founder / Lead Engineer of Aila
