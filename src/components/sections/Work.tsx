@@ -11,11 +11,6 @@ const css = `
 .wk-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:44px}
 .wk-head p{max-width:360px;color:var(--mute);font-size:15px}
 .wk-row{--spine:clamp(68px,6vw,92px);display:flex;gap:10px;height:min(78svh,600px)}
-/* Nothing open yet: equal columns, each showing its spine */
-@media (min-width: 901px){
-  .wk-row:not(.has-open) .wk-panel{flex:1 1 0}
-  .wk-row:not(.has-open) .wk-panel:hover{box-shadow:var(--hair),0 20px 50px -30px rgba(13,13,13,.35)}
-}
 .wk-panel{position:relative;flex:0 0 var(--spine);min-width:0;border-radius:28px;background:var(--card);box-shadow:var(--hair);overflow:hidden;transition:flex 1s var(--ease),box-shadow .6s var(--ease),background-color .8s var(--ease),color .6s var(--ease)}
 .wk-panel.is-open{flex:8 1 0;box-shadow:var(--hair),var(--shadow-soft)}
 .wk-panel:has(.wk-spine:focus-visible){outline:2px solid var(--ink);outline-offset:3px}
@@ -75,9 +70,7 @@ const css = `
 `;
 
 export default function Work() {
-  // Every panel starts closed; hover, focus or tap opens one.
-  const [open, setOpen] = useState<number | null>(null);
-  const canHover = () => window.matchMedia("(hover: hover) and (min-width: 901px)").matches;
+  const [open, setOpen] = useState(0);
 
   return (
     <section id="work" className="section" aria-labelledby="work-title">
@@ -87,13 +80,7 @@ export default function Work() {
           <SectionHeading id="work-title" tag="03 — Selected work" title="Things I've" accent="built." />
           <p className="rv">Launch programs at Apple, Warner Media and beIN — and two 0-to-1 builds. Hover, focus or tap a panel to open it.</p>
         </div>
-        <div
-          className={`wk-row rv${open !== null ? " has-open" : ""}`}
-          style={{ ["--closed" as string]: PROJECTS.length - 1 }}
-          onMouseLeave={() => {
-            if (canHover()) setOpen(null);
-          }}
-        >
+        <div className="wk-row rv" style={{ ["--closed" as string]: PROJECTS.length - 1 }}>
           {PROJECTS.map((p, i) => {
             const isOpen = open === i;
             return (
@@ -103,7 +90,7 @@ export default function Work() {
                 style={{ ["--brand" as string]: p.theme.bg }}
                 aria-labelledby={`wk-t-${p.id}`}
                 onMouseEnter={(e) => {
-                  if (canHover() && e.buttons === 0) setOpen(i);
+                  if (window.matchMedia("(hover: hover) and (min-width: 901px)").matches && e.buttons === 0) setOpen(i);
                 }}
               >
                 <button
@@ -111,11 +98,8 @@ export default function Work() {
                   className="wk-spine"
                   aria-expanded={isOpen}
                   aria-controls={`wk-b-${p.id}`}
-                  onFocus={(e) => {
-                    // Keyboard focus opens the panel; a tap's focus is left to onClick's toggle.
-                    if (e.currentTarget.matches(":focus-visible")) setOpen(i);
-                  }}
-                  onClick={() => setOpen((o) => (o === i && !canHover() ? null : i))}
+                  onFocus={() => setOpen(i)}
+                  onClick={() => setOpen(i)}
                 >
                   <span className="wk-spine-num">{p.index}</span>
                   <span className="wk-spine-title" id={`wk-t-${p.id}`}>
