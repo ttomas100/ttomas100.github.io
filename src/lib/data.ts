@@ -198,6 +198,8 @@ export type Project = {
   ui: MiniUI;
   /** Faint watermark shown when the panel opens: a single-colour logo file in /public/brands, or a text wordmark. */
   mark: { label: string; src?: string; text?: string };
+  /** Brand colour the panel takes on when open; `tone` is the text colour that stays readable on it. */
+  theme: { bg: string; tone: "light" | "dark" };
 };
 
 export const PROJECTS: Project[] = [
@@ -223,6 +225,7 @@ export const PROJECTS: Project[] = [
     ],
     ui: "train",
     mark: { label: "Apple", src: "/brands/apple.svg" },
+    theme: { bg: "#1D1D1F", tone: "dark" }, // Apple near-black
   },
   {
     id: "max",
@@ -248,6 +251,7 @@ export const PROJECTS: Project[] = [
     ],
     ui: "matrix",
     mark: { label: "Max", src: "/brands/hbomax.svg" },
+    theme: { bg: "#002BE7", tone: "dark" }, // Max blue
   },
   {
     id: "bein",
@@ -272,6 +276,7 @@ export const PROJECTS: Project[] = [
     ui: "traffic",
     // No openly licensed beIN Sports logo available: plain text wordmark instead.
     mark: { label: "beIN Sports", text: "beIN SPORTS" },
+    theme: { bg: "#5B2A86", tone: "dark" }, // beIN purple (approximate)
   },
   {
     id: "aila",
@@ -299,6 +304,7 @@ export const PROJECTS: Project[] = [
     ],
     ui: "marketplace",
     mark: { label: "Aila", src: "/brands/aila.svg" },
+    theme: { bg: "#918DE2", tone: "light" }, // Aila Brand/Accent (periwinkle)
   },
   // repos — from the Woulib-API / Woulib-Mobile-iOS / Woulib-Mobile-Android READMEs
   {
@@ -329,6 +335,7 @@ export const PROJECTS: Project[] = [
     ],
     ui: "ride",
     mark: { label: "Woulib", src: "/brands/woulib.png" },
+    theme: { bg: "#005B40", tone: "dark" }, // Woulib brandDeepGreen
   },
 ];
 

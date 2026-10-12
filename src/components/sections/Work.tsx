@@ -11,7 +11,7 @@ const css = `
 .wk-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:44px}
 .wk-head p{max-width:360px;color:var(--mute);font-size:15px}
 .wk-row{--spine:clamp(68px,6vw,92px);display:flex;gap:10px;height:min(78svh,600px)}
-.wk-panel{position:relative;flex:0 0 var(--spine);min-width:0;border-radius:28px;background:var(--card);box-shadow:var(--hair);overflow:hidden;transition:flex 1s var(--ease),box-shadow .6s var(--ease)}
+.wk-panel{position:relative;flex:0 0 var(--spine);min-width:0;border-radius:28px;background:var(--card);box-shadow:var(--hair);overflow:hidden;transition:flex 1s var(--ease),box-shadow .6s var(--ease),background-color .8s var(--ease),color .6s var(--ease)}
 .wk-panel.is-open{flex:8 1 0;box-shadow:var(--hair),var(--shadow-soft)}
 .wk-panel:has(.wk-spine:focus-visible){outline:2px solid var(--ink);outline-offset:3px}
 .wk-spine{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:22px 0;text-align:center;transition:opacity .4s var(--ease)}
@@ -36,7 +36,21 @@ const css = `
 .wk-tech .chip img,.wk-tech .chip svg,.wk-tech .chip [role=img]{flex:none}
 .wk-mark{position:absolute;left:-3%;bottom:-6%;width:min(44%,420px);aspect-ratio:1;pointer-events:none;background:var(--ink);-webkit-mask:var(--mark) center/contain no-repeat;mask:var(--mark) center/contain no-repeat;opacity:0;transform:translateY(40px) scale(.9) rotate(-6deg);transition:opacity .4s var(--ease),transform .6s var(--ease)}
 .wk-mark.is-text{background:none;-webkit-mask:none;mask:none;width:auto;aspect-ratio:auto;bottom:-2%;left:2%;font-weight:800;letter-spacing:-.05em;line-height:.82;font-size:clamp(72px,8.4vw,136px);color:var(--ink);white-space:nowrap}
-.wk-panel.is-open .wk-mark{opacity:.055;transform:none;transition:opacity 1.2s .3s var(--ease),transform 1.5s .3s var(--ease)}
+/* Open panel takes the app's brand colour */
+.wk-panel.is-open{background-color:var(--brand)}
+.wk-panel.is-open.on-dark{color:#fff}
+.is-open.on-dark .wk-kick,.is-open.on-dark .wk-spine-num{color:rgba(255,255,255,.72)}
+.is-open.on-dark .wk-kick b{color:#fff}
+.is-open.on-dark .wk-desc,.is-open.on-dark .wk-feats li{color:rgba(255,255,255,.88)}
+.is-open.on-dark .wk-feats li::before{background:#fff}
+.is-open.on-dark .wk-apps .chip{background:rgba(255,255,255,.12);box-shadow:inset 0 0 0 1px rgba(255,255,255,.24);color:#fff}
+.is-open.on-dark .wk-plus{box-shadow:inset 0 0 0 1px rgba(255,255,255,.5)}
+.is-open.on-dark .wk-mark{background:#fff}
+.is-open.on-dark .wk-mark.is-text{background:none;color:#fff}
+.is-open.on-light .wk-kick,.is-open.on-light .wk-desc,.is-open.on-light .wk-feats li{color:var(--ink)}
+.is-open.on-light .wk-apps .chip{background:rgba(255,255,255,.45);box-shadow:inset 0 0 0 1px rgba(13,13,13,.14)}
+.is-open .wk-tech .chip{background:#fff;color:var(--ink);box-shadow:none}
+.wk-panel.is-open .wk-mark{opacity:.07;transform:none;transition:opacity 1.2s .3s var(--ease),transform 1.5s .3s var(--ease)}
 .wk-ui{min-width:0;clip-path:inset(0 100% 0 0 round 22px);transition:clip-path .6s var(--ease)}
 .wk-panel.is-open .wk-ui{clip-path:inset(0 0 0 0 round 22px);transition:clip-path 1.2s .35s var(--ease)}
 @media (max-width: 900px){
@@ -72,7 +86,8 @@ export default function Work() {
             return (
               <article
                 key={p.id}
-                className={`wk-panel${isOpen ? " is-open" : ""}`}
+                className={`wk-panel on-${p.theme.tone}${isOpen ? " is-open" : ""}`}
+                style={{ ["--brand" as string]: p.theme.bg }}
                 aria-labelledby={`wk-t-${p.id}`}
                 onMouseEnter={(e) => {
                   if (window.matchMedia("(hover: hover) and (min-width: 901px)").matches && e.buttons === 0) setOpen(i);
