@@ -5,6 +5,9 @@ import { PROFILE } from "@/lib/data";
 import { prefersReducedMotion } from "@/lib/hooks";
 import { Css } from "../ui/Css";
 
+/** Bump after re-running scripts/build-hero-assets.py: /hero/* is cached as immutable. */
+const HERO_VERSION = "3";
+
 const css = `
 .hero{position:relative;min-height:100svh;background:var(--paper);overflow:clip}
 .hero-ghost{position:absolute;left:50%;top:clamp(84px,14vh,150px);transform:translateX(-50%);font-weight:800;letter-spacing:-.06em;line-height:.8;font-size:clamp(110px,25vw,420px);color:transparent;-webkit-text-stroke:1.5px rgba(13,13,13,.13);white-space:nowrap;user-select:none;pointer-events:none;animation:hero-ghost 1.6s var(--ease) both}
@@ -147,11 +150,11 @@ export default function Hero() {
           loop
           playsInline
           preload="auto"
-          poster="/hero/poster.webp"
+          poster={`/hero/poster.webp?v=${HERO_VERSION}`}
           aria-label={`Intro video: ${PROFILE.name}, shown as a 3D animated character, introduces himself.`}
         >
-          <source src="/hero/hero.webm" type="video/webm" />
-          <source src="/hero/hero.mp4" type="video/mp4" />
+          <source src={`/hero/hero.webm?v=${HERO_VERSION}`} type="video/webm" />
+          <source src={`/hero/hero.mp4?v=${HERO_VERSION}`} type="video/mp4" />
         </video>
       </div>
       <div className="wrap hero-grid">

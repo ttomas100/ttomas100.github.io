@@ -14,6 +14,14 @@ npm run start      # serve the production build
 
 First-load JS for `/` is ~134 kB. Fonts are self-hosted from `src/fonts`; nothing is loaded from a CDN at runtime.
 
+## Deploy
+
+The site is a static export (`output: "export"` → `out/`) hosted on **GitHub Pages** at https://ttomas100.github.io/.
+Every push to `main` on `ttomas100/ttomas100.github.io` runs `.github/workflows/deploy.yml`, which builds and publishes it.
+You can also re-run it from the repo's Actions tab ("Deploy to GitHub Pages" → Run workflow).
+
+Don't run `npm run build` in this folder while `npm run dev` is running: both use `.next`, and the build breaks the dev server.
+
 ## Content
 
 All text lives in **`src/lib/data.ts`**. Components only read from it.
@@ -67,6 +75,8 @@ The script does the following:
 5. **Builds stills**: `public/portrait-bust.webp` (480×600, from the sharpest frame) and `public/og.jpg` (1200×630).
 
 If your ffmpeg lacks `libwebp` or `drawtext`, the script falls back to `cwebp` and Pillow.
+
+After rebuilding, bump `HERO_VERSION` in `src/components/hero/Hero.tsx`. `/hero/*` is served with an immutable cache header, so returning visitors would otherwise keep the old clip.
 
 ## Brand logos
 

@@ -32,7 +32,7 @@ const description =
   "Senior Engineering Program Manager with 10+ years driving end-to-end product and platform launches at scale — HBO Max, Max, Discovery+, and Apple News & Stocks.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL("https://ttomas100.github.io"),
   title,
   description,
   authors: [{ name: PROFILE.name }],
